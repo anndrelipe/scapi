@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+ 
 import mongoose from "mongoose";
 
 const professorSchema = new mongoose.Schema({
@@ -13,7 +13,7 @@ const professorSchema = new mongoose.Schema({
         ref: "modalidades", 
         required: [true, "O campo {VALUE} é um parâmetro obrigatório para criar um novo objeto desta coleção"]
     },
-    salario : { type: Double }
+    salario : { type: Number }
 
 }, { versionKey: false });
 

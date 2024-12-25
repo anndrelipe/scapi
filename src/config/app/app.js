@@ -1,8 +1,10 @@
 import express from "express";
 import Database from "../database/Database.js";
+import professorRouter from "../../routes/professorRoutes.js"
+import modalidadeRouter from "../../routes/modalidadeRoutes.js";
 
 const app = express();
-app.use(express.json());
+app.use(express.json(), professorRouter, modalidadeRouter);
 
 const mongodb = await Database.connection();
 

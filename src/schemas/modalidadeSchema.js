@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+ 
 import mongoose from "mongoose";
 import professorSchema from "./professorSchema.js";
 
@@ -11,7 +11,7 @@ const modalidadeSchema = new mongoose.Schema({
     descricao : { type: String },
     professores : { type: [professorSchema] },
     mensalidade : { 
-        type: Double,
+        type: Number,
         required: [true, "O campo {VALUE} é um parâmetro obrigatório para criar um novo objeto desta coleção"]
     }    
 }, { versionKey: false });
