@@ -1,7 +1,7 @@
 import modalidade from "../models/modalidade.js"
 
 class ModalidadesController {
-    static async adicionarModalidade(req, res) {
+    static async adicionarModalidade(req, res, next) {
         const { nome, descricao, professores, mensalidade } = req.body;
 
         try {
@@ -24,19 +24,11 @@ class ModalidadesController {
             }
 
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                status: 500,
-                message: "Um erro aconteceu",
-                content: {
-                    error: error.message,
-                    data: []
-                }
-            });
+            next(error);
         }
     }
 
-    static async listarModalidades (req, res) {
+    static async listarModalidades (req, res, next) {
         try {
             const modalidades = await modalidade.find({});
 
@@ -50,20 +42,12 @@ class ModalidadesController {
             });
 
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                status: 500,
-                message: "Um erro aconteceu",
-                content: {
-                    error: error.message,
-                    data: []
-                }
-            });
+            next(error);
         }
 
     }
 
-    static async procuraPorId (req, res) {
+    static async procuraPorId (req, res, next) {
         const {id} = req.params;
 
         try {
@@ -78,18 +62,11 @@ class ModalidadesController {
                 }
             });
         } catch (error) {
-            res.status(500).json({
-                status: 500,
-                message: "Algum erro aconteceu.",
-                content: {
-                    error: error.message,
-                    data: []
-                }
-            });
+            next(error);
         }
     }
 
-    static async deletarModalidade (req, res) {
+    static async deletarModalidade (req, res, next) {
         const {id} = req.params;
 
         try {
@@ -105,18 +82,11 @@ class ModalidadesController {
                 }
             });
         } catch (error) {
-            res.status(500).json({
-                status: 500,
-                message: "Algum erro aconteceu.",
-                content: {
-                    error: error.message,
-                    data: []
-                }
-            });
+            next(error);
         }
     }
 
-    static async editarModalidade (req, res) {
+    static async editarModalidade (req, res, next) {
         const { nome, descricao, professores, mensalidade } = req.body;
         const {id} = req.params;
 
@@ -141,14 +111,7 @@ class ModalidadesController {
             });
 
         } catch (error) {
-            res.status(500).json({
-                status: 500,
-                message: "Algum erro aconteceu.",
-                content: {
-                    error: error.message,
-                    data: []
-                }
-            });
+            next(error);
         }
     }
 }

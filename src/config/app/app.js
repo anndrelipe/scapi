@@ -2,9 +2,14 @@ import express from "express";
 import Database from "../database/Database.js";
 import professorRouter from "../../routes/professorRoutes.js"
 import modalidadeRouter from "../../routes/modalidadeRoutes.js";
+import verificaErro from "../../middlewares/VerificaErro.js";
+import verificaSeExiste from "../../middlewares/VerificaSeExiste.js";
+
 
 const app = express();
 app.use(express.json(), professorRouter, modalidadeRouter);
+app.use(verificaSeExiste)
+app.use(verificaErro)
 
 const mongodb = await Database.connection();
 
